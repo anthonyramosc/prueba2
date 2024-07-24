@@ -1,0 +1,33 @@
+.calendar {
+  margin: 20px 0;
+}
+
+.calendar th, .calendar td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #8b8989;
+}
+
+.calendar .week-view .hour,
+.calendar .day-view .hour {
+  height: 30px;
+}
+
+.calendar .week-view td,
+.calendar .day-view td {
+  height: 30px;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.calendar .week-view td {
+  width: 12.5%;
+}
+
+.calendar .day-view td {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}

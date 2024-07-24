@@ -1,0 +1,259 @@
+<div class="container">
+    <!-- Botones de vista -->
+    <div class="row mb-3">
+      <div class="col text-center">
+        <button class="btn btn-outline-danger m-1" (click)="showMonthlyView()">M</button>
+        <button class="btn btn-outline-danger m-1" (click)="showWeeklyView()">S</button>
+        <button class="btn btn-outline-danger m-1" (click)="showDailyView()">D</button>
+      </div>
+    </div>
+  
+    <!-- Vista Mensual -->
+    <div id="monthlyView" class="calendar" [class.hidden]="!isMonthlyViewVisible">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Julio.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+          <tr>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Vista Semanal -->
+    <div id="weeklyView" class="calendar week-view" [class.hidden]="!isWeeklyViewVisible">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Hora</th>
+            <th>Dom. 21/7</th>
+            <th>Lun. 22/7</th>
+            <th>Mar. 23/7</th>
+            <th>Mié. 24/7</th>
+            <th>Jue. 25/7</th>
+            <th>Vie. 26/7</th>
+            <th>Sáb. 27/7</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="hour">11:00am</td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+          <tr>
+            <td class="hour">12:00am</td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+
+          <tr>
+            <td class="hour">2:00pm</td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+
+          <tr>
+            <td class="hour">3:00pm</td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+
+          <tr>
+            <td class="hour">4:00pm</td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+
+          <tr>
+            <td class="hour">5:00pm</td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+
+          <tr>
+            <td class="hour">6:00pm</td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+
+          <tr>
+            <td class="hour">7:00pm</td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+
+          <tr>
+            <td class="hour">9:00pm</td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+
+          <tr>
+            <td class="hour">10:00pm</td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+
+          <tr>
+            <td class="hour">11:00pm</td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+
+          <tr>
+            <td class="hour">12:00pm</td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+
+          
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Vista Diaria -->
+    <div id="dailyView" class="calendar day-view" [class.hidden]="!isDailyViewVisible">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th colspan="2" class="text-center">23 de Julio de 2024</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="hour">11:00am</td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+          <tr>
+            <td class="hour">12:00am</td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+          <tr>
+            <td class="hour">2:00pm</td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+          <tr>
+            <td class="hour">3:00pm</td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+          <tr>
+            <td class="hour">4:00pm</td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+          <tr>
+            <td class="hour">5:00pm</td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+          <tr>
+            <td class="hour">6:00pm</td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+          <tr>
+            <td class="hour">7:00pm</td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+          <tr>
+            <td class="hour">8:00pm</td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+          <tr>
+            <td class="hour">9:00pm</td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+          <tr>
+            <td class="hour">10:00pm</td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+          <tr>
+            <td class="hour">11:00pm</td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+          <tr>
+            <td class="hour">12:00pm</td>
+            <td (click)="addEvent($event)"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
