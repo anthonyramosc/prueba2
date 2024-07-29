@@ -1,33 +1,74 @@
-.calendar {
-  margin: 20px 0;
+.main {
+  display: grid;
+  grid-template-columns: 30% 70%;
 }
 
-.calendar th, .calendar td {
+.calendar {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  color: #6b6b6b;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
   text-align: center;
   padding: 10px;
-  border: 1px solid #8b8989;
+  background-color: #f2f2f2;
+  flex-direction: column;
+
+  
 }
 
-.calendar .week-view .hour,
-.calendar .day-view .hour {
-  height: 30px;
-}
-
-.calendar .week-view td,
-.calendar .day-view td {
-  height: 30px;
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-}
-
-.calendar .week-view td {
-  width: 12.5%;
-}
-
-.calendar .day-view td {
+.table {
   width: 100%;
+  border: 1px solid #afabab;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #afabab;
+
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.table td {
+  height: 100px; /* Ajusta la altura según tus necesidades */
+  cursor: pointer;
+}
+
+.table td:hover {
+  background-color: #f2f2f2;
 }
 
 .hidden {
   display: none;
 }
+.hour {
+  width: 5%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-start;
+  
+}
+.btn {
+  border-radius: 45%;
+  border: 1px solid #f85656;
+  margin: 5px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.btn:hover {
+  background-color: #b40606; /* Green */
+  color: white;
+}
+
