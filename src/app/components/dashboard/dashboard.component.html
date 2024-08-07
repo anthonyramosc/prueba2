@@ -1,248 +1,66 @@
 <div class="container">
+  <!-- Vista Mensual -->
   <div id="monthlyView" class="calendar" [class.hidden]="!isMonthlyViewVisible">
     <div class="header">
       <div class="buttons">
         <div>
-          <button class="btn " (click)="showMonthlyView()">M</button>
-          <button class="btn " (click)="showWeeklyView()">S</button>
-          <button class="btn " (click)="showDailyView()">D</button>
+          <button class="btn" (click)="showMonthlyView()">M</button>
+          <button class="btn" (click)="showWeeklyView()">S</button>
+          <button class="btn" (click)="showDailyView()">D</button>
+          <button class="btn" (click)="goToToday()">Hoy</button>
         </div>
       </div>
-      <th class="month ">Julio 2024</th>
+      <div class="month-navigation">
+        <button class="btn" (click)="prevMonth()">&#9664;</button>
+        <span class="month">{{ monthNames[currentMonth] }} {{ currentYear }}</span>
+        <button class="btn" (click)="nextMonth()">&#9654;</button>
+      </div>
     </div>
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>Dom.</th>
-          <th>Lun.</th>
-          <th>Mar.</th>
-          <th>Mié.</th>
-          <th>Jue.</th>
-          <th>Vie.</th>
-          <th>Sáb.</th>
+          <th *ngFor="let day of daysInWeek">{{ day }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
+        <tr *ngFor="let week of weeksInMonth">
+          <td *ngFor="let day of week" [class.today]="isToday(day.day)" (click)="addEvent($event)">
+            <span *ngIf="day.day">{{ day.day }}</span>
+          </td>
         </tr>
-        <tr>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-
-        <tr>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-
-        <tr>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-
-        <tr>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-
-        <tr>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-        <!-- Continúa agregando más filas según sea necesario -->
       </tbody>
     </table>
   </div>
+
   <!-- Vista Semanal -->
   <div id="weeklyView" class="calendar week-view" [class.hidden]="!isWeeklyViewVisible">
     <div class="header">
       <div class="buttons">
         <div>
-          <button class="btn " (click)="showMonthlyView()">M</button>
-          <button class="btn " (click)="showWeeklyView()">S</button>
-          <button class="btn " (click)="showDailyView()">D</button>
+          <button class="btn" (click)="showMonthlyView()">M</button>
+          <button class="btn" (click)="showWeeklyView()">S</button>
+          <button class="btn" (click)="showDailyView()">D</button>
+          <button class="btn" (click)="goToToday()">Hoy</button>
         </div>
       </div>
-      <th class="month ">21 - 27 Jul.2024</th>
+      <div class="week-navigation">
+        <button class="btn" (click)="prevWeek()">&#9664;</button>
+        <span class="week">{{ currentWeekStart | date: 'dd/MM/yyyy' }} - {{ currentWeek[6] | date: 'dd/MM/yyyy' }}</span>
+        <button class="btn" (click)="nextWeek()">&#9654;</button>
+      </div>
     </div>
     <table class="table table-bordered">
       <thead>
         <tr>
           <th></th>
-          <th>Dom. 21/7</th>
-          <th>Lun. 22/7</th>
-          <th>Mar. 23/7</th>
-          <th>Mié. 24/7</th>
-          <th>Jue. 25/7</th>
-          <th>Vie. 26/7</th>
-          <th>Sáb. 27/7</th>
+          <th *ngFor="let day of currentWeek">{{ day | date: 'EEE' }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="hour">11:00am</td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
+        <tr *ngFor="let hour of hoursInDay">
+          <td class="hour">{{ hour }}</td>
+          <td *ngFor="let day of currentWeek" (click)="addEvent($event)"></td>
         </tr>
-        <tr>
-          <td class="hour">12:00am</td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-
-        <tr>
-          <td class="hour">2:00pm</td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-
-        <tr>
-          <td class="hour">3:00pm</td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-
-        <tr>
-          <td class="hour">4:00pm</td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-
-        <tr>
-          <td class="hour">5:00pm</td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-
-        <tr>
-          <td class="hour">6:00pm</td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-
-        <tr>
-          <td class="hour">7:00pm</td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-
-        <tr>
-          <td class="hour">9:00pm</td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-
-        <tr>
-          <td class="hour">10:00pm</td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-
-        <tr>
-          <td class="hour">11:00pm</td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-
-        <tr>
-          <td class="hour">12:00pm</td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-
-
       </tbody>
     </table>
   </div>
@@ -252,75 +70,31 @@
     <div class="header">
       <div class="buttons">
         <div>
-          <button class="btn " (click)="showMonthlyView()">M</button>
-          <button class="btn " (click)="showWeeklyView()">S</button>
-          <button class="btn " (click)="showDailyView()">D</button>
+          <button class="btn" (click)="showMonthlyView()">M</button>
+          <button class="btn" (click)="showWeeklyView()">S</button>
+          <button class="btn" (click)="showDailyView()">D</button>
+          <button class="btn" (click)="goToToday()">Hoy</button>
         </div>
       </div>
-      <th class="month ">23 de Julio de 2024</th>
+      <div class="day-navigation">
+        <button class="btn" (click)="prevDay()">&#9664;</button>
+        <span class="day">{{ currentDay | date: 'fullDate' }}</span>
+        <button class="btn" (click)="nextDay()">&#9654;</button>
+      </div>
     </div>
     <table class="table table-bordered">
       <thead>
         <tr>
           <th class="hour"></th>
-          <th colspan="2" class="text-center"> Martes </th>
+          <th class="text-center">{{ currentDay | date: 'EEEE' }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="hour">11:00am</td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-        <tr>
-          <td class="hour">12:00am</td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-        <tr>
-          <td class="hour">2:00pm</td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-        <tr>
-          <td class="hour">3:00pm</td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-        <tr>
-          <td class="hour">4:00pm</td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-        <tr>
-          <td class="hour">5:00pm</td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-        <tr>
-          <td class="hour">6:00pm</td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-        <tr>
-          <td class="hour">7:00pm</td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-        <tr>
-          <td class="hour">8:00pm</td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-        <tr>
-          <td class="hour">9:00pm</td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-        <tr>
-          <td class="hour">10:00pm</td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-        <tr>
-          <td class="hour">11:00pm</td>
-          <td (click)="addEvent($event)"></td>
-        </tr>
-        <tr>
-          <td class="hour">12:00pm</td>
+        <tr *ngFor="let hour of hoursInDay">
+          <td class="hour">{{ hour }}</td>
           <td (click)="addEvent($event)"></td>
         </tr>
       </tbody>
     </table>
   </div>
-
 </div>
