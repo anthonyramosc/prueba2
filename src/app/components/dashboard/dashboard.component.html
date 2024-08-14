@@ -100,11 +100,19 @@
  
 
   <div *ngIf="isModalOpen" class="modal-form">
+
     <div class="modal-header">
       <h3>Insertar Nota</h3>
       <button class="close-btn" (click)="closeModal()">×</button>
     </div>
-    <div class="modal-body">
+
+  
+  <div class="primero">
+     
+        <img class="img" src="https://img.freepik.com/vector-gratis/hombre-dentista-examinando-dientes-paciente_1308-98143.jpg" alt="">
+      
+    
+      <div class="modal-body">
       <div class="form-group">
         <label for="fullName">Nombre Completo *</label>
         <input type="text" id="fullName" class="form-control">
@@ -122,20 +130,14 @@
         <label for="phone">Teléfono Referencia</label>
         <input type="text" id="phone" class="form-control">
       </div>
+      </div>
+    </div>
+<div class="segundo">
+  <div class="sendoIntermedio">
       <div class="form-group">
         <label for="doctor">Doctor</label>
         <select id="doctor" class="form-control">
           <option>Dr. Xavier Guaman</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="reason">Motivo de Consulta</label>
-        <select id="reason" class="form-control">
-          <option>Seleccione Motivo de Consulta</option>
-          <option>- Control de tratamiento </option>
-          <option>- Limpieza</option>
-          <option>- Primera Consulta</option>
-          <option>- Urgencia</option>
         </select>
       </div>
       <div class="form-group  ">
@@ -143,7 +145,7 @@
         <div class="date-time-inputs">
           <input type="number" id="day" class="form-control day-input" placeholder="Día" min="1" max="31" style="display:inline-block; width: 30%;">
           <input type="number" id="month" class="form-control month-input" placeholder="Mes" min="1" max="12" style="display:inline-block; width: 30%;">
-          <input type="number" id="year" class="form-control  year-input" placeholder="Año" min="1900" max="2100" style="display:inline-block; width: 30%;">
+          <input type="number" id="year" class="form-control  year-input" placeholder="Año" min="2000" max="2100" style="display:inline-block; width: 30%;">
         </div>
       </div>
       <div class="form-group">
@@ -157,19 +159,30 @@
           </select>
         </div>
       </div>
-      
       <div class="form-group">
         <label for="duration">Duración </label>
         <input type="number" id="duration" class="form-control" value="15">
       </div>
       <div class="form-group">
-        
-      </div>
+      </div> 
       <div class="form-group">
         <label for="referral">Canal de Referido</label>
         <select id="referral" class="form-control">
           <option>- Seleccione Canal de Referido</option>
           <option>- (+) Agregar canal preferido</option>
+        </select>
+      </div>
+</div>
+
+<div class="segundoMedio">
+      <div class="form-group">
+        <label for="reason">Motivo de Consulta</label>
+        <select id="reason" class="form-control">
+          <option>Seleccione Motivo de Consulta</option>
+          <option>- Control de tratamiento </option>
+          <option>- Limpieza</option>
+          <option>- Primera Consulta</option>
+          <option>- Urgencia</option>
         </select>
       </div>
       <div class="form-group">
@@ -178,10 +191,13 @@
         <small>Esta observación NO LA VERÁ el paciente en el correo de confirmación de cita</small>
       </div>
     </div>
+    </div>
+  
     <div class="modal-footer">
       <button class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
       <button class="btn btn-primary">Imprimir</button>
       <button class="btn btn-success"  (click)="saveEvent()">Guardar</button>
     </div>
-  </div>
+  
+
 </div>

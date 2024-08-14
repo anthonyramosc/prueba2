@@ -171,26 +171,27 @@ export class DashboardComponent {
 
   addEvent(event: any) {
     this.currentCell = event.target.closest('td'); 
+    console.log("Clicked cell:", this.currentCell);
     this.openModal();
-  }
+}
   
   saveEvent() {
+    console.log("Saving event:", this.newEventText, "in cell:", this.currentCell);
     if (this.currentCell && this.newEventText.trim() !== '') {
-      const eventDiv = document.createElement('div');
-      eventDiv.className = 'event';
-      eventDiv.innerText = this.newEventText;
-      eventDiv.style.backgroundColor = '#f85656'; 
-      eventDiv.style.color = '#fff'; 
-  
+        const eventDiv = document.createElement('div');
+        eventDiv.className = 'event';
+        eventDiv.innerText = this.newEventText;
+        eventDiv.style.backgroundColor = '#f85656'; 
+        eventDiv.style.color = '#fff'; 
     
-      if (this.currentCell.innerHTML.trim() === '') {
-        this.currentCell.innerHTML = '<span>' + this.currentCell.querySelector('span').innerText + '</span>'; 
-      }
-  
-      this.currentCell.appendChild(eventDiv);
+        if (this.currentCell.innerHTML.trim() === '') {
+            this.currentCell.innerHTML = '<span>' + this.currentCell.querySelector('span').innerText + '</span>'; 
+        }
+    
+        this.currentCell.appendChild(eventDiv);
     }
     this.closeModal();
-  }
+}
 
   goToToday() {
     this.currentYear = this.currentDate.getFullYear();
