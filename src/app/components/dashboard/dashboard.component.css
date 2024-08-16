@@ -194,15 +194,12 @@ textarea.form-control {
 }
 
 .hour-input,
-.minute-input {
+.minute-input,
+.ampm-input {
   flex: 1;
   width: 60%;
 }
 
-.ampm-input {
-  flex: 0.5;
-  width: 80%;
-}
 
 .event {
   background-color: #f85656;
@@ -236,3 +233,4 @@ textarea.form-control {
 .all{
   height: 10%;
 }
+

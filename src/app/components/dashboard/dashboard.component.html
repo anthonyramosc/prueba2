@@ -102,7 +102,7 @@
   <div *ngIf="isModalOpen" class="modal-form">
 
     <div class="modal-header">
-      <h3>Insertar Nota</h3>
+   
       <button class="close-btn" (click)="closeModal()">×</button>
     </div>
 
@@ -114,26 +114,23 @@
     
       <div class="modal-body">
       <div class="form-group">
-        <label for="fullName">Nombre Completo *</label>
-        <input type="text" id="fullName" class="form-control">
+        <input type="text" id="fullName" class="form-control" placeholder="Nombre Completo">
       </div>
       <div class="form-group">
-        <label for="nit">NIT *</label>
-        <input type="text" id="nit" class="form-control">
+        <input type="text" id="nit" class="form-control" placeholder="NIT">
         <small>Si no tiene el NIT a mano, puede utilizar temporalmente: 1-9 (Recuerde actualizar el NIT del cliente en la ficha después)</small>
       </div>
       <div class="form-group">
-        <label for="email">Correo electrónico</label>
-        <input type="email" id="email" class="form-control">
+        <input type="email" id="email" class="form-control" placeholder="Correo Electronico">
       </div>
       <div class="form-group">
-        <label for="phone">Teléfono Referencia</label>
-        <input type="text" id="phone" class="form-control">
+        <input type="text" id="phone" class="form-control" placeholder="Teléfono Referencia">
       </div>
       </div>
     </div>
+    */ 
 <div class="segundo">
-  <div class="sendoIntermedio">
+  <div class="segundoIntermedio">
       <div class="form-group">
         <label for="doctor">Doctor</label>
         <select id="doctor" class="form-control">
@@ -159,6 +156,18 @@
           </select>
         </div>
       </div>
+
+      <div class="form-group">
+        <label for="reason">Estado</label>
+        <div class="status-dropdown">
+          <select [(ngModel)]="status" (change)="onStatusChange($event)">
+            <option *ngFor="let option of statusOptions" [ngValue]="option.value">
+              <span [ngClass]="option.iconClass"></span> {{ option.label }}
+            </option>
+          </select>
+        </div>
+      </div>
+      
       <div class="form-group">
         <label for="duration">Duración </label>
         <input type="number" id="duration" class="form-control" value="15">
@@ -177,7 +186,7 @@
 <div class="segundoMedio">
       <div class="form-group">
         <label for="reason">Motivo de Consulta</label>
-        <select id="reason" class="form-control">
+        <select id="reason" class="form-control" >
           <option>Seleccione Motivo de Consulta</option>
           <option>- Control de tratamiento </option>
           <option>- Limpieza</option>
@@ -185,6 +194,9 @@
           <option>- Urgencia</option>
         </select>
       </div>
+
+      
+
       <div class="form-group">
         <label for="observations">Observación Interna</label>
         <textarea id="observations" class="form-control" rows="3"></textarea>
@@ -200,4 +212,4 @@
     </div>
   
 
-</div>
+</div> 

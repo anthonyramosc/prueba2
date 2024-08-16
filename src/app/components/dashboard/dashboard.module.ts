@@ -12,7 +12,8 @@ import { NgxTimepickerModule } from 'ngx-timepicker';
   imports: [CommonModule, FormsModule, DashboardComponent,     
     NgbModule,
     ToastrModule.forRoot(),
-    NgxTimepickerModule
+    NgxTimepickerModule,
+    ReactiveFormsModule
 
   ],
   exports: [DashboardComponent]
