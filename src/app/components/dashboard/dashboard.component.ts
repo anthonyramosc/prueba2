@@ -1,7 +1,8 @@
-import { Component, LOCALE_ID} from '@angular/core';
+import { Component, LOCALE_ID, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import { ReactiveFormsModule,FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 registerLocaleData(localeEs, 'es');
 
@@ -10,11 +11,88 @@ registerLocaleData(localeEs, 'es');
   standalone: true,
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   providers: [{ provide: LOCALE_ID, useValue: 'es' }]
 })
-export class DashboardComponent {
 
+export class DashboardComponent {
+  isModalOpen = false;
+  isModalsOpen = false
+  newEventText: string = '';
+  currentCell: HTMLElement | null = null;
+  currentDateObj: string | null = null;
+  myForm: FormGroup;
+  events: any[] = [];
+
+
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
+    this.myForm = this.fb.group({
+      nombre: [''],
+      cedula: [''],
+      description: ['']
+    });
+
+   
+    const savedEvents = localStorage.getItem('events');
+    this.events = savedEvents ? JSON.parse(savedEvents) : [];
+    this.populateCalendarWithEvents();
+  }
+
+  openModal(cell: HTMLElement, date: string) {
+    this.isModalOpen = true;
+    this.currentCell = cell;
+    this.currentDateObj = date;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+    this.currentCell = null;
+    this.currentDateObj = null;
+    this.myForm.reset();
+  }
+
+  onSubmit() {
+    if (this.myForm.valid ) {
+      const newEvent = {
+        id: this.events.length + 1,
+        date: this.currentDateObj,
+        name: this.myForm.value.nombre,
+        cedula: this.myForm.value.cedula,
+        description: this.myForm.value.description || 'Sin descripción'
+      };
+
+      this.events.push(newEvent);
+      localStorage.setItem('events', JSON.stringify(this.events));
+
+      if (this.currentCell) {
+      this.currentCell.innerHTML += `<div>${newEvent.name} - ${newEvent.cedula}</div>`;
+      }
+
+      this.closeModal();
+    } else {
+      console.log('Formulario no válido');
+      console.log(this.myForm.errors);
+      console.log(this.myForm.get('nombre')?.errors);
+      console.log(this.myForm.get('cedula')?.errors);
+    }
+  }
+
+  populateCalendarWithEvents() {
+    this.events.forEach(event => {
+      const cell = document.querySelector(`td[data-date="${event.date}"]`);
+      if (cell) {
+        cell.innerHTML += `<div>${event.name} - ${event.cedula}</div>`;
+      }
+    });
+  }
+
+ 
+  
+
+
+  
 
   timePicker = {
     format: '24', 
@@ -23,9 +101,7 @@ export class DashboardComponent {
   isMonthlyViewVisible = true;
   isWeeklyViewVisible = false;
   isDailyViewVisible = false;
-  isModalOpen = false;
-  newEventText: string = '';
-  currentCell: HTMLElement | null = null;
+ 
 
   currentYear = new Date().getFullYear();
   currentMonth = new Date().getMonth();
@@ -157,41 +233,8 @@ export class DashboardComponent {
   }
 
   
-  openModal() {
-    this.isModalOpen = true;
-    this.newEventText = '';
-    this.currentCell = null;
-  }
 
-  closeModal() {
-    this.isModalOpen = false;
-    this.newEventText = '';
-    this.currentCell = null;
-  }
 
-  addEvent(event: any) {
-    this.currentCell = event.target.closest('td'); 
-    console.log("Clicked cell:", this.currentCell);
-    this.openModal();
-}
-  
-  saveEvent() {
-    console.log("Saving event:", this.newEventText, "in cell:", this.currentCell);
-    if (this.currentCell && this.newEventText.trim() !== '') {
-        const eventDiv = document.createElement('div');
-        eventDiv.className = 'event';
-        eventDiv.innerText = this.newEventText;
-        eventDiv.style.backgroundColor = '#f85656'; 
-        eventDiv.style.color = '#fff'; 
-    
-        if (this.currentCell.innerHTML.trim() === '') {
-            this.currentCell.innerHTML = '<span>' + this.currentCell.querySelector('span').innerText + '</span>'; 
-        }
-    
-        this.currentCell.appendChild(eventDiv);
-    }
-    this.closeModal();
-}
 
   goToToday() {
     this.currentYear = this.currentDate.getFullYear();

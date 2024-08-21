@@ -84,7 +84,8 @@
 
 .month-navigation {
   text-align: center;
-  padding-right: 70px;
+  padding-right: 1px;
+  padding-left: 60px;
 }
 
 .hidden {

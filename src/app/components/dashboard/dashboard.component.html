@@ -1,3 +1,5 @@
+
+
 <div >
   <div class="calendar">
     <div id="monthlyView" class="calendar month-view" [class.hidden]="!isMonthlyViewVisible">
@@ -24,7 +26,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let week of weeksInMonth">
-            <td *ngFor="let day of week" [class.today]="isToday(day.day)" (click)="openModal()">
+            <td *ngFor="let day of week" [class.today]="isToday(day.day)" (click)="openModal($event.currentTarget)">
               <span *ngIf="day.day">{{ day.day }}</span>
             </td>
           </tr>
@@ -51,14 +53,14 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th></th>
+            <th>/</th>
             <th *ngFor="let day of currentWeek">{{ day | date: 'EEE' }}</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let hour of hoursInDay">
             <td class="hour">{{ hour }}</td>
-            <td *ngFor="let day of currentWeek" (click)="openModal()"></td>
+            <td *ngFor="let day of currentWeek" (click)="openModals()"></td>
           </tr>
         </tbody>
       </table>
@@ -90,20 +92,52 @@
         <tbody>
           <tr *ngFor="let hour of hoursInDay">
             <td class="hour">{{ hour }}</td>
-            <td (click)="openModal()"></td>
+            <td (click)="openModals()"></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 
+
  
+  
 
   <div *ngIf="isModalOpen" class="modal-form">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="nombre">Nombre:</label>
+        <input id="nombre" formControlName="nombre">
+        <div *ngIf="myForm.get('nombre')?.invalid && myForm.get('nombre')?.touched">
+          <small *ngIf="myForm.get('nombre')?.errors?.['required']">El nombre es obligatorio.</small>
+        </div>
+      </div>
+      
+      <div>
+        <label for="cedula">Cédula:</label>
+        <input id="cedula" formControlName="cedula">
+        <div *ngIf="myForm.get('cedula')?.invalid && myForm.get('cedula')?.touched">
+          <small  *ngIf="myForm.get('cedula')?.errors?.['required']">La cédula es obligatoria y debe contener solo números.</small>
+        </div>
+      </div>
+  
+       
+      <div>
+        <label for="description">Descripción:</label>
+        <input id="description" formControlName="description">
+      </div>
+      
+      <button type="submit" [disabled]="myForm.invalid">Enviar</button>
+      <button type="button" (click)="closeModal()">Cancelar</button>
+    </form>
+  </div>
+
+ <!--
+  <div *ngIf="isModalsOpen" class="modal-form">
 
     <div class="modal-header">
    
-      <button class="close-btn" (click)="closeModal()">×</button>
+      <button class="close-btn" (click)="closeModals()">×</button>
     </div>
 
   
@@ -206,10 +240,10 @@
     </div>
   
     <div class="modal-footer">
-      <button class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
+      <button class="btn btn-secondary" (click)="closeModals()">Cerrar</button>
       <button class="btn btn-primary">Imprimir</button>
       <button class="btn btn-success"  (click)="saveEvent()">Guardar</button>
     </div>
   
 
-</div> 
+</div> -->

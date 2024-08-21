@@ -1,0 +1,19 @@
+{
+    "events": [
+      {
+        "id": 1,
+        "date": "2024-08-01",
+        "name": "Reunión con Juan",
+        "cedula": "123456789",
+        "description": "Discusión sobre el proyecto X"
+      },
+      {
+        "id": 2,
+        "date": "2024-08-15",
+        "name": "Consulta médica",
+        "cedula": "987654321",
+        "description": "Chequeo anual con el Dr. Pérez"
+      }
+    ]
+  }
+  
